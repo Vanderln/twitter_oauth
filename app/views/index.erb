@@ -7,12 +7,15 @@
     # we should show her a form that will allow her to send a tweet. If there is no
     # user logged-in, we should show the sign-in button.
   %>
-  <% if @access_token %>
+  <% if current_user %>
     <div>
-      <p>
-        <strong>token:</strong> <%= @access_token.token %><br>
-        <strong>secret:</strong> <%= @access_token.secret %><br>
-      </p>
+      
+        <h1>@<%= current_user.username %></h1>
+      
+      <form action="/tweet" method="POST">
+        <textarea name="new_tweet" cols="50" autofocus></textarea>
+        <input type="submit" value="Tweet Away!">
+      </form>
       <p>
         <button><a href="/sign_out">Sign Out</a></button>
       </p>
